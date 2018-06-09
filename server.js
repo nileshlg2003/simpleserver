@@ -26,7 +26,7 @@ http.createServer(function(req, res){
 
     }catch(e){
         res.statusCode = 404;
-        res.setHeader("Content-type", "text/plain");
+        res.setHeader("Content-Type", "text/plain");
         res.end("404 Not Found! \n");
 
         return;
@@ -36,9 +36,10 @@ http.createServer(function(req, res){
     if(stats.isFile()){
 
         var mimeType = mimeTypes[path.extname(fileName).split(".").reverse()[0]];
+        console.log("Mimetype is , " + mimeType);
         //res.setHeader(200, {"Content-type": "mimeType"});
         res.statusCode = 200;
-        res.setHeader("Content-type", "mimeType");
+        res.setHeader("Content-Type", mimeType);
         res.end;
 
         var fileStream = fs.createReadStream(fileName);
@@ -51,7 +52,7 @@ http.createServer(function(req, res){
         
     } else {
         res.statusCode = 500;
-        res.setHeader("Content-type", "text/plain");
+        res.setHeader("Content-Type", "text/plain");
         res.end("500 Internal Error \n");
 
         
